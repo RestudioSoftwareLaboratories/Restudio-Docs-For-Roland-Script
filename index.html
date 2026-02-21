@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roland Script Docs</title>
+
+<link href="https://fonts.cdnfonts.com/css/tiny5" rel="stylesheet">
+<link rel="icon" href="https://i.postimg.cc/66MLbbg8/restudio-profile.png" type="image/png">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+    padding-bottom: 50px;
+}
+
+.navbar {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar img { height: 40px; margin-right: 15px; }
+.navbar h1 { font-family: 'Tiny5', sans-serif; font-size: 20px; margin: 0; color: #fff; }
+
+.container { padding: 20px; max-width: 1000px; margin: auto; }
+
+/* h1 and h2 use Tiny5 font */
+h1, h2 {
+    font-family: 'Tiny5', sans-serif;
+    color: #222;
+    margin-top: 25px;
+}
+
+p { margin: 8px 0; }
+
+.section-title {
+    background-color: #e0e0e0;
+    padding: 8px 12px;
+    border-left: 5px solid #569CD6;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Header Box for Roland Script (normal font) */
+.script-header {
+    background-color: #808080;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px 6px 0 0;
+    font-family: Arial, sans-serif; 
+    font-size: 16px;
+}
+
+/* Code Container */
+.code-container {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    font-family: Consolas, monospace;
+    white-space: pre-wrap;
+    border-radius: 0 0 6px 6px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+/* Syntax Colors */
+.keyword-blue { color: #569CD6; font-weight: bold; }
+.keyword-red { color: #F44747; font-weight: bold; }
+.keyword-green { color: #6A9955; font-weight: bold; }
+.number-yellow { color: #DCDCAA; }
+.string-orange { color: #CE9178; }
+.comment-gray { color: #6A9955; font-style: italic; }
+
+/* Link Button */
+.try-link {
+    display:inline-block;
+    background-color:#569CD6; 
+    color:white; 
+    text-decoration:none;
+    padding:12px 25px; 
+    font-family:'Tiny5', sans-serif; 
+    font-size:16px; 
+    border-radius:6px;
+    transition:0.2s;
+}
+.try-link:hover { opacity:0.8; }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<img src="https://i.postimg.cc/yYCszSyc/swrh-restudio.png" alt="Logo">
+<h1>Docs</h1>
+</div>
+
+<div class="container">
+
+<h1>Welcome to Roland Script</h1>
+<p><strong>Roland Script (or Roland) is a DSL designed to be simple yet powerful. It is ideal for structured scripting with minimal syntax.</strong></p>
+
+<hr>
+
+<h2>Basic Script Structure</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">hi roland.script!</span> <span class="comment-gray">// Entry point of the script (MANDATORY)</span><br>
+<span class="keyword-red">END!</span> <span class="comment-gray">// Temporary termination (max 150 lines)</span><br>
+<span class="keyword-red">PASS!</span> <span class="comment-gray">// Final termination for large codes</span>
+</div>
+
+<h2>Variables - Integers</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">var</span> = X; <span class="comment-gray">// Declare integer variable</span><br>
+X = <span class="number-yellow">3</span>; <span class="comment-gray">// Assign value</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">var</span> = Y;<br>
+Y = <span class="number-yellow">10</span>;
+</div>
+
+<h2>Variables - Decimals (Dnumber)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">Dnumber</span> = X; <span class="comment-gray">// Declare decimal variable</span><br>
+X = <span class="number-yellow">3.4</span>; <span class="comment-gray">// Assign decimal value</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">Dnumber</span> = Y;<br>
+Y = <span class="number-yellow">5.7</span>;
+</div>
+
+<h2>Variables - Characters</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">character</span> = X; <span class="comment-gray">// Declare character variable (single letter)</span><br>
+X = e; <span class="comment-gray">// Assign character (no quotes)</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">character</span> = letter;<br>
+letter = A;
+</div>
+
+<h2>Variables - Words (Strings)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">word</span> = X; <span class="comment-gray">// Declare word variable</span><br>
+X = ammar; <span class="comment-gray">// Assign word (no quotes)</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">word</span> = name;<br>
+name = ahmed;
+</div>
+
+<h2>Variables - Boolean (TFvar)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">TFvar</span> = X; <span class="comment-gray">// Declare boolean variable (true/false)</span><br>
+X = true; <span class="comment-gray">// Assign true or false</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">TFvar</span> = isActive;<br>
+isActive = false;
+</div>
+
+<h2>Constants & Mutable Variables</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">const</span> X = <span class="number-yellow">34</span>; <span class="comment-gray">// Cannot be changed after assignment</span><br>
+<span class="keyword-blue">let</span> E = <span class="number-yellow">0</span>; <span class="comment-gray">// Mutable variable (can be changed)</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">var</span> = E;<br>
+E = <span class="number-yellow">23</span>;<br>
+<span class="keyword-blue">let</span> E = <span class="number-yellow">0</span>;
+</div>
+
+<h2>Greet - Reserve a Name</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">greet</span> name:(<span class="string-orange">"ali"</span>) <span class="comment-gray">// Reserve a name in the code</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello + name"</span>) <span class="comment-gray">// Use the reserved name</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">greet</span> username:(<span class="string-orange">"sara"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Welcome username"</span>)
+</div>
+
+<h2>Conditions (if)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">var</span> X = <span class="number-yellow">3</span>;<br>
+<span class="keyword-blue">if var X = (<span class="number-yellow">"3"</span>)</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Matched"</span>)<br>
+<br>
+<span class="comment-gray">// Another example:</span><br>
+<span class="keyword-blue">var</span> Y = <span class="number-yellow">400</span>;<br>
+<span class="keyword-blue">if var Y = (<span class="number-yellow">"400"</span>)</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)
+</div>
+
+<h2>User Input (if typed & msg.out)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">var</span> X;<br>
+<span class="keyword-blue">msg.out</span>:(<span class="string-orange">"if typed 34 in X"</span>) <span class="comment-gray">// Receive user input</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"X = msg.out"</span>) <span class="comment-gray">// Print what user typed</span><br>
+<br>
+<span class="comment-gray">// if typed example:</span><br>
+<span class="keyword-blue">var</span> input;<br>
+<span class="keyword-blue">msg.out</span>:(<span class="string-orange">"Enter number:"</span>)<br>
+<span class="keyword-blue">if typed</span> input = (<span class="string-orange">"34"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"You typed 34"</span>)
+</div>
+
+<h2>Input & Output (msg.log & msg.out)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Hello World!"</span>) <span class="comment-gray">// Print output to console</span><br>
+<span class="keyword-blue">msg.out</span>:(<span class="string-orange">"Enter value"</span>) <span class="comment-gray">// Receive user input</span>
+</div>
+
+<h2>Libraries (get lib)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">get lib</span>:(<span class="string-orange">"calculator"</span>) <span class="comment-gray">// Load calculator library (only library available)</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"2+43"</span>) <span class="comment-gray">// Compiler will show answer in console</span>
+</div>
+
+<h2>Repeat / Reload (reload!)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)<br>
+<span class="keyword-red">reload!</span> = (<span class="number-yellow">"19"</span>) <span class="comment-gray">// Repeat the previous command 19 times</span><br>
+<span class="comment-gray">// This will print "hello world!" 19 times</span>
+</div>
+
+<h2>Comments (bookname)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-green">bookname</span>:(<span class="string-orange">"this code for calculator"</span>) <span class="comment-gray">// Add a comment</span><br>
+<span class="keyword-green">bookname</span>:(<span class="string-orange">"code is here!"</span>)
+</div>
+
+<h2>Termination (PASS! & END!)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="keyword-green">bookname</span>:(<span class="string-orange">"code is here!"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)<br>
+<span class="keyword-red">PASS!</span> <span class="comment-gray">// Final termination for large codes</span><br>
+<br>
+<span class="comment-gray">// END! example (temporary - max 150 lines):</span><br>
+<span class="keyword-green">bookname</span>:(<span class="string-orange">"code is here!"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)<br>
+<span class="keyword-red">END!</span> <span class="comment-gray">// Temporary termination, error if exceeds 150 lines</span>
+</div>
+
+<h2>Complete Examples</h2>
+<div class="script-header">ROLAND SCRIPT - Basic Example</div>
+<div class="code-container">
+<span class="keyword-blue">hi roland.script!</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)<br>
+<span class="keyword-red">END!</span>
+</div>
+
+<div class="script-header">ROLAND SCRIPT - Calculator Example</div>
+<div class="code-container">
+<span class="keyword-blue">hi roland.script!</span><br>
+<span class="keyword-green">bookname</span>:(<span class="string-orange">"Simple Calculator"</span>)<br>
+<span class="keyword-blue">get lib</span>:(<span class="string-orange">"calculator"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"5+3"</span>)<br>
+<span class="keyword-red">PASS!</span>
+</div>
+
+<div class="script-header">ROLAND SCRIPT - User Input Example</div>
+<div class="code-container">
+<span class="keyword-blue">hi roland.script!</span><br>
+<span class="keyword-blue">var</span> = userInput;<br>
+<span class="keyword-blue">msg.out</span>:(<span class="string-orange">"Enter your name:"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Hello userInput"</span>)<br>
+<span class="keyword-red">END!</span>
+</div>
+
+<div style="margin-top:50px; color:#777;">
+© Restudio Games
+</div>
+
+</div>
+</body>
+</html>
