@@ -111,19 +111,18 @@ p { margin: 8px 0; }
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
 <span class="keyword-blue">hi roland.script!</span> <span class="comment-gray">// Entry point of the script (MANDATORY)</span><br>
-<span class="keyword-red">END!</span> <span class="comment-gray">// Terminate the script</span><br>
-<span class="keyword-red">PASS!</span> <span class="comment-gray">// Same as END! - terminate the script</span>
+<span class="keyword-red">END!</span> <span class="comment-gray">// Temporary termination (max 150 lines)</span><br>
+<span class="keyword-red">PASS!</span> <span class="comment-gray">// Final termination for large codes</span>
 </div>
 
-<h2>Variables - Integers (var)</h2>
+<h2>Variables - Integers</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
 <span class="keyword-blue">var</span> = X; <span class="comment-gray">// Declare integer variable</span><br>
 X = <span class="number-yellow">3</span>; <span class="comment-gray">// Assign value</span><br>
 <span class="comment-gray">// Example:</span><br>
 <span class="keyword-blue">var</span> = Y;<br>
-Y = <span class="number-yellow">10</span>;<br>
-Y = <span class="number-yellow">23</span>; <span class="comment-gray">// Change value (mutable)</span>
+Y = <span class="number-yellow">10</span>;
 </div>
 
 <h2>Variables - Decimals (Dnumber)</h2>
@@ -136,26 +135,24 @@ X = <span class="number-yellow">3.4</span>; <span class="comment-gray">// Assign
 Y = <span class="number-yellow">5.7</span>;
 </div>
 
-<h2>Variables - Characters (character)</h2>
+<h2>Variables - Characters</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
 <span class="keyword-blue">character</span> = X; <span class="comment-gray">// Declare character variable (single letter)</span><br>
 X = e; <span class="comment-gray">// Assign character (no quotes)</span><br>
 <span class="comment-gray">// Example:</span><br>
 <span class="keyword-blue">character</span> = letter;<br>
-letter = A;<br>
-letter = B; <span class="comment-gray">// Change character</span>
+letter = A;
 </div>
 
-<h2>Variables - Words (word)</h2>
+<h2>Variables - Words (Strings)</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
 <span class="keyword-blue">word</span> = X; <span class="comment-gray">// Declare word variable</span><br>
 X = ammar; <span class="comment-gray">// Assign word (no quotes)</span><br>
 <span class="comment-gray">// Example:</span><br>
 <span class="keyword-blue">word</span> = name;<br>
-name = ahmed;<br>
-name = mohamed; <span class="comment-gray">// Change word</span>
+name = ahmed;
 </div>
 
 <h2>Variables - Boolean (TFvar)</h2>
@@ -165,25 +162,24 @@ name = mohamed; <span class="comment-gray">// Change word</span>
 X = true; <span class="comment-gray">// Assign true or false</span><br>
 <span class="comment-gray">// Example:</span><br>
 <span class="keyword-blue">TFvar</span> = isActive;<br>
-isActive = false;<br>
-isActive = true; <span class="comment-gray">// Change boolean</span>
+isActive = false;
 </div>
 
-<h2>Constants & Mutable Variables</h2>
+<h2>Mutable Variables (let)</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
-<span class="keyword-blue">const</span> X = <span class="number-yellow">34</span>; <span class="comment-gray">// Cannot be changed after assignment</span><br>
-<span class="comment-gray">// Mutable variables are declared with var/Dnumber/character/word/TFvar</span><br>
-<span class="keyword-blue">var</span> = counter;<br>
-counter = <span class="number-yellow">0</span>; <span class="comment-gray">// Initial value</span><br>
-counter = <span class="number-yellow">23</span>; <span class="comment-gray">// Updated value (mutable)</span>
+<span class="keyword-blue">let</span> E = <span class="number-yellow">0</span>; <span class="comment-gray">// Mutable variable (can be changed)</span><br>
+<span class="comment-gray">// Example:</span><br>
+<span class="keyword-blue">var</span> = E;<br>
+E = <span class="number-yellow">23</span>;<br>
+<span class="keyword-blue">let</span> E = <span class="number-yellow">0</span>;
 </div>
 
 <h2>Greet - Reserve a Name</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
 <span class="keyword-blue">greet</span> name:(<span class="string-orange">"ali"</span>) <span class="comment-gray">// Reserve a name in the code</span><br>
-<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello name"</span>) <span class="comment-gray">// Use the reserved name</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello + name"</span>) <span class="comment-gray">// Use the reserved name</span><br>
 <span class="comment-gray">// Example:</span><br>
 <span class="keyword-blue">greet</span> username:(<span class="string-orange">"sara"</span>)<br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Welcome username"</span>)
@@ -192,14 +188,12 @@ counter = <span class="number-yellow">23</span>; <span class="comment-gray">// U
 <h2>Conditions (if)</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
-<span class="keyword-blue">var</span> = X;<br>
-X = <span class="number-yellow">3</span>;<br>
+<span class="keyword-blue">var</span> X = <span class="number-yellow">3</span>;<br>
 <span class="keyword-blue">if var X = (<span class="number-yellow">"3"</span>)</span><br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Matched"</span>)<br>
 <br>
 <span class="comment-gray">// Another example:</span><br>
-<span class="keyword-blue">var</span> = Y;<br>
-Y = <span class="number-yellow">400</span>;<br>
+<span class="keyword-blue">var</span> Y = <span class="number-yellow">400</span>;<br>
 <span class="keyword-blue">if var Y = (<span class="number-yellow">"400"</span>)</span><br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)
 </div>
@@ -207,12 +201,12 @@ Y = <span class="number-yellow">400</span>;<br>
 <h2>User Input (if typed & msg.out)</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
-<span class="keyword-blue">var</span> = X;<br>
+<span class="keyword-blue">var</span> X;<br>
 <span class="keyword-blue">msg.out</span>:(<span class="string-orange">"if typed 34 in X"</span>) <span class="comment-gray">// Receive user input</span><br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"X = msg.out"</span>) <span class="comment-gray">// Print what user typed</span><br>
 <br>
 <span class="comment-gray">// if typed example:</span><br>
-<span class="keyword-blue">var</span> = input;<br>
+<span class="keyword-blue">var</span> input;<br>
 <span class="keyword-blue">msg.out</span>:(<span class="string-orange">"Enter number:"</span>)<br>
 <span class="keyword-blue">if typed</span> input = (<span class="string-orange">"34"</span>)<br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"You typed 34"</span>)
@@ -247,17 +241,17 @@ Y = <span class="number-yellow">400</span>;<br>
 <span class="keyword-green">bookname</span>:(<span class="string-orange">"code is here!"</span>)
 </div>
 
-<h2>Termination (END! & PASS!)</h2>
+<h2>Termination (PASS! & END!)</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
 <span class="keyword-green">bookname</span>:(<span class="string-orange">"code is here!"</span>)<br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)<br>
-<span class="keyword-red">END!</span> <span class="comment-gray">// Terminate the script</span><br>
+<span class="keyword-red">PASS!</span> <span class="comment-gray">// Final termination for large codes</span><br>
 <br>
-<span class="comment-gray">// PASS! example (same as END!):</span><br>
+<span class="comment-gray">// END! example (temporary - max 150 lines):</span><br>
 <span class="keyword-green">bookname</span>:(<span class="string-orange">"code is here!"</span>)<br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello world!"</span>)<br>
-<span class="keyword-red">PASS!</span> <span class="comment-gray">// Same as END! - terminate the script</span>
+<span class="keyword-red">END!</span> <span class="comment-gray">// Temporary termination, error if exceeds 150 lines</span>
 </div>
 
 <h2>Complete Examples</h2>
@@ -277,34 +271,12 @@ Y = <span class="number-yellow">400</span>;<br>
 <span class="keyword-red">PASS!</span>
 </div>
 
-<div class="script-header">ROLAND SCRIPT - Greet Example (Correct Way)</div>
+<div class="script-header">ROLAND SCRIPT - User Input Example</div>
 <div class="code-container">
 <span class="keyword-blue">hi roland.script!</span><br>
-<span class="keyword-blue">greet</span> name:(<span class="string-orange">"ali"</span>)<br>
-<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello name"</span>)<br>
-<span class="keyword-red">PASS!</span>
-</div>
-
-<div class="script-header">ROLAND SCRIPT - All Variables Example</div>
-<div class="code-container">
-<span class="keyword-blue">hi roland.script!</span><br>
-<span class="comment-gray">// Integer</span><br>
-<span class="keyword-blue">var</span> = age;<br>
-age = <span class="number-yellow">25</span>;<br>
-<span class="comment-gray">// Decimal</span><br>
-<span class="keyword-blue">Dnumber</span> = price;<br>
-price = <span class="number-yellow">10.5</span>;<br>
-<span class="comment-gray">// Character</span><br>
-<span class="keyword-blue">character</span> = grade;<br>
-grade = A;<br>
-<span class="comment-gray">// Word</span><br>
-<span class="keyword-blue">word</span> = name;<br>
-name = ahmed;<br>
-<span class="comment-gray">// Boolean</span><br>
-<span class="keyword-blue">TFvar</span> = isStudent;<br>
-isStudent = true;<br>
-<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Name: name, Age: age, Price: price"</span>)<br>
-<span class="keyword-red">PASS!</span>
+<span class="keyword-blue">msg.out</span>:(<span class="string-orange">"Enter your name:"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Hello + msg.out"</span>)<br>
+<span class="keyword-red">END!</span>
 </div>
 
 <div style="margin-top:50px; color:#777;">
