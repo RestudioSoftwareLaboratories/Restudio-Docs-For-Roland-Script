@@ -5,6 +5,7 @@
 <title>Roland Script Docs</title>
 
 <link href="https://fonts.cdnfonts.com/css/tiny5" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
 <link rel="icon" href="https://i.postimg.cc/66MLbbg8/restudio-profile.png" type="image/png">
 
 <style>
@@ -29,11 +30,13 @@ body {
 
 .container { padding: 20px; max-width: 1000px; margin: auto; }
 
-/* h1 and h2 use Tiny5 font */
 h1, h2 {
     font-family: 'Tiny5', sans-serif;
     color: #222;
     margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 p { margin: 8px 0; }
@@ -47,7 +50,6 @@ p { margin: 8px 0; }
     font-weight: bold;
 }
 
-/* Header Box for Roland Script (normal font) */
 .script-header {
     background-color: #808080;
     color: white;
@@ -55,9 +57,10 @@ p { margin: 8px 0; }
     border-radius: 6px 6px 0 0;
     font-family: Arial, sans-serif; 
     font-size: 16px;
+    display: flex;
+    align-items: center;
 }
 
-/* Code Container */
 .code-container {
     background-color: #1e1e1e;
     color: #d4d4d4;
@@ -69,15 +72,14 @@ p { margin: 8px 0; }
     overflow-x: auto;
 }
 
-/* Syntax Colors */
 .keyword-blue { color: #569CD6; font-weight: bold; }
 .keyword-red { color: #F44747; font-weight: bold; }
 .keyword-green { color: #6A9955; font-weight: bold; }
+.keyword-purple { color: #C586C0; font-weight: bold; }
 .number-yellow { color: #DCDCAA; }
 .string-orange { color: #CE9178; }
 .comment-gray { color: #6A9955; font-style: italic; }
 
-/* Link Button */
 .try-link {
     display:inline-block;
     background-color:#569CD6; 
@@ -90,6 +92,44 @@ p { margin: 8px 0; }
     transition:0.2s;
 }
 .try-link:hover { opacity:0.8; }
+
+/* ========== Pixel Badge Style ========== */
+.version-badge {
+    display: inline-block;
+    background-color: #569CD6;
+    color: white;
+    font-size: 11px;
+    padding: 4px 8px;
+    margin-left: 8px;
+    font-family: 'Press Start 2P', cursive;
+    letter-spacing: 0.5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #8ab8ff #2a5490 #2a5490 #8ab8ff;
+    image-rendering: pixelated;
+    box-shadow: 0 0 0 1px #000;
+    text-shadow: 2px 2px 0 #2a5490;
+    line-height: 1.2;
+    vertical-align: middle;
+}
+
+.version-badge:active {
+    border-color: #2a5490 #8ab8ff #8ab8ff #2a5490;
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+/* Badge in heading */
+h2 .version-badge {
+    font-size: 9px;
+    padding: 3px 6px;
+}
+
+.script-header .version-badge {
+    font-size: 9px;
+    padding: 3px 6px;
+    margin-left: 10px;
+}
 </style>
 </head>
 
@@ -165,6 +205,44 @@ X = true; <span class="comment-gray">// Assign true or false</span><br>
 isActive = false;
 </div>
 
+<!-- Arrays Section -->
+<h2>Arrays (line for class) <span class="version-badge">NEW</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge">v2.0</span></div>
+<div class="code-container">
+<span class="keyword-purple">line for class:</span>[Ammar, Ali, Ahmed,] <span class="comment-gray">// Define an array</span>
+<br>
+<span class="comment-gray">// Print array with title:</span><br>
+<span class="keyword-purple">line for class</span> = (<span class="string-orange">"My Array"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"My Array"</span>)<br>
+<br>
+<span class="comment-gray">// Example with names:</span><br>
+<span class="keyword-purple">line for class:</span>[Mohammed, Ahmed, Sara,]
+<br>
+<span class="keyword-purple">line for class</span> = (<span class="string-orange">"Students"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Students"</span>)<br>
+<span class="comment-gray">// Output: Students: [Mohammed, Ahmed, Sara,]</span>
+</div>
+
+<!-- Cletters Section -->
+<h2>Cletters - Character Combiner OR Complementary letters <span class="version-badge">NEW</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge">v2.0</span></div>
+<div class="code-container">
+<span class="keyword-purple">Cletters</span> variableName:(<span class="string-orange">"t e x t   w i t h   s p a c e s"</span>) <span class="comment-gray">// Combine characters by removing spaces</span><br>
+<br>
+<span class="comment-gray">// English example:</span><br>
+<span class="keyword-purple">Cletters</span> message:(<span class="string-orange">"h e l l o   w o r l d !"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"message"</span>) <span class="comment-gray">// Output: "helloworld!"</span><br>
+<br>
+<span class="comment-gray">// Arabic example:</span><br>
+<span class="keyword-purple">Cletters</span> greeting:(<span class="string-orange">"م ر ح ب ا   ب ك"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"greeting"</span>) <span class="comment-gray">// Output: "مرحبابك"</span><br>
+<br>
+<span class="comment-gray">// Multiple variables:</span><br>
+<span class="keyword-purple">Cletters</span> text1:(<span class="string-orange">"R e s t u d i o"</span>)<br>
+<span class="keyword-purple">Cletters</span> text2:(<span class="string-orange">"S c r i p t"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"text1 text2"</span>) <span class="comment-gray">// Output: "RestudioScript"</span>
+</div>
+
 <h2>Mutable Variables</h2>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
@@ -178,7 +256,7 @@ E = <span class="number-yellow">23</span>;<br>
 <div class="script-header">ROLAND SCRIPT</div>
 <div class="code-container">
 <span class="keyword-blue">greet</span> name:(<span class="string-orange">"ali"</span>) <span class="comment-gray">// Reserve a name in the code</span><br>
-<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello + name"</span>) <span class="comment-gray">// Use the reserved name</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"hello name"</span>) <span class="comment-gray">// Use the reserved name</span><br>
 <span class="comment-gray">// Example:</span><br>
 <span class="keyword-blue">greet</span> username:(<span class="string-orange">"sara"</span>)<br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Welcome username"</span>)
@@ -217,11 +295,16 @@ E = <span class="number-yellow">23</span>;<br>
 <span class="keyword-blue">msg.out</span>:(<span class="string-orange">"Enter value"</span>) <span class="comment-gray">// Receive user input</span>
 </div>
 
-<h2>Libraries (get lib)</h2>
-<div class="script-header">ROLAND SCRIPT</div>
+<h2>Libraries (get lib) <span class="version-badge">NEW</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge">v2.0</span></div>
 <div class="code-container">
-<span class="keyword-blue">get lib</span>:(<span class="string-orange">"calculator"</span>) <span class="comment-gray">// Load calculator library (only library available)</span><br>
-<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"2+43"</span>) <span class="comment-gray">// Compiler will show answer in console</span>
+<span class="keyword-blue">get lib</span>:(<span class="string-orange">"calculator"</span>) <span class="comment-gray">// Load calculator library (math.js powered)</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"2+43"</span>) <span class="comment-gray">// Compiler will show answer in console</span><br>
+<br>
+<span class="comment-gray">// Math expressions:</span><br>
+<span class="keyword-blue">get lib</span>:(<span class="string-orange">"calculator"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"10 + 5 * 3"</span>)  <span class="comment-gray">// Output: 25</span><br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"100 / 4"</span>)     <span class="comment-gray">// Output: 25</span>
 </div>
 
 <h2>Repeat / Reload (reload!)</h2>
@@ -253,6 +336,7 @@ E = <span class="number-yellow">23</span>;<br>
 </div>
 
 <h2>Complete Examples</h2>
+
 <div class="script-header">ROLAND SCRIPT - Basic Example</div>
 <div class="code-container">
 <span class="keyword-blue">hi roland.script!</span><br>
@@ -275,6 +359,30 @@ E = <span class="number-yellow">23</span>;<br>
 <span class="keyword-blue">msg.out</span>:(<span class="string-orange">"Enter your name:"</span>)<br>
 <span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Hello msg.out"</span>)<br>
 <span class="keyword-red">END!</span>
+</div>
+
+<!-- Complete Array + Cletters Example -->
+<div class="script-header">ROLAND SCRIPT - Arrays & Cletters Example <span class="version-badge">NEW</span></div>
+<div class="code-container">
+<span class="keyword-blue">hi roland.script!</span><br>
+<span class="keyword-green">bookname</span>:(<span class="string-orange">"Arrays & Cletters Demo"</span>)<br>
+<br>
+<span class="comment-gray">// Define an array of names</span><br>
+<span class="keyword-purple">line for class:</span>[Noor, Ali, Fatima]<br>
+
+<br>
+<span class="comment-gray">// Display the array</span><br>
+<span class="keyword-purple">line for class</span> = (<span class="string-orange">"Names List"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"Names List"</span>)<br>
+<br>
+<span class="comment-gray">// Combine spaced characters</span><br>
+<span class="keyword-purple">Cletters</span> message:(<span class="string-orange">"h e l l o   w o r l d !"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"message"</span>)<br>
+<br>
+<span class="keyword-purple">Cletters</span> arabic:(<span class="string-orange">"م ر ح ب ا   ب ك"</span>)<br>
+<span class="keyword-blue">msg.log</span>:(<span class="string-orange">"arabic"</span>)<br>
+<br>
+<span class="keyword-red">PASS!</span>
 </div>
 
 <div style="margin-top:50px; color:#777;">
