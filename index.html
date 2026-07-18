@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Roland Script - End Of Life (EOL)</title>
+    <title>Roland Script Docs</title>
     <link href="https://fonts.cdnfonts.com/css/tiny5" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/press-start-2p" rel="stylesheet">
     <link rel="icon" href="https://i.postimg.cc/66MLbbg8/restudio-profile.png" type="image/png">
+    <!-- Material Icons for warning banner -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
@@ -24,45 +25,60 @@
         }
         .navbar img { height: 40px; margin-right: 15px; }
         .navbar h1 { font-family: 'Tiny5', sans-serif; font-size: 20px; margin: 0; color: #fff; }
-        .container {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        h1, h2, h3 {
+        .container { padding: 20px; max-width: 1000px; margin: auto; }
+        h1, h2 {
             font-family: 'Tiny5', sans-serif;
             color: #222;
-        }
-        h1 {
-            font-size: 28px;
             margin-top: 25px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        h2 {
-            font-size: 22px;
-            margin-top: 30px;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 6px;
-        }
-        h3 {
-            font-size: 18px;
-            margin-top: 22px;
-            color: #333;
-        }
         p { margin: 8px 0; }
-        ul { padding-left: 25px; }
-        li { margin-bottom: 4px; }
-        .cancelled-item {
-            color: #c0392b;
-            text-decoration: line-through;
+        .script-header {
+            background-color: #808080;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px 6px 0 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
         }
-
-        /* EOL Badge - بنفس نمط version-badge */
-        .badge-eol {
+        .code-container {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+            border-radius: 0 0 6px 6px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        /* الكلمات المفتاحية حسب الألوان المحددة */
+        .start { color: #569CD6; font-weight: bold; }
+        .stop { color: #F44747; font-weight: bold; }
+        .type { color: #569CD6; font-weight: normal; }
+        .prove { color: #C586C0; font-weight: bold; }
+        .if-keyword { color: #DCDCAA; font-weight: bold; }
+        .else-keyword { color: #DCDCAA; font-weight: normal; }
+        .operator { color: #FF6B6B; font-weight: bold; }
+        .switch { color: #4EC9B0; font-weight: bold; }
+        .case-value { color: #9CDCFE; font-weight: normal; }
+        .func { color: #FF8C00; font-weight: bold; }
+        .range { color: #C586C0; font-weight: bold; }
+        .for-keyword { color: #FFD700; font-weight: normal; }
+        .function { color: #DCDCAA; font-weight: normal; }
+        .string { color: #CE9178; font-weight: normal; }
+        .comment { color: #6A9955; font-style: italic; font-weight: normal; }
+        .number { color: #B5CEA8; font-weight: normal; }
+        .constant { color: #569CD6; font-weight: normal; }
+        .delimiter { color: #888888; font-weight: normal; }
+        
+        .version-badge {
             display: inline-block;
-            background-color: #c0392b;
+            background-color: #569CD6;
             color: white;
             font-size: 11px;
             padding: 4px 8px;
@@ -71,184 +87,507 @@
             letter-spacing: 0.5px;
             border-style: solid;
             border-width: 3px;
-            border-color: #e87474 #7f1a1a #7f1a1a #e87474;
+            border-color: #8ab8ff #2a5490 #2a5490 #8ab8ff;
             image-rendering: pixelated;
             box-shadow: 0 0 0 1px #000;
-            text-shadow: 2px 2px 0 #7f1a1a;
+            text-shadow: 2px 2px 0 #2a5490;
             line-height: 1.2;
             vertical-align: middle;
         }
-        .badge-eol:active {
-            border-color: #7f1a1a #e87474 #e87474 #7f1a1a;
+        .version-badge-3 {
+            background-color: #C586C0;
+            border-color: #d9a7d9 #7b3f7b #7b3f7b #d9a7d9;
+            text-shadow: 2px 2px 0 #7b3f7b;
+        }
+        .version-badge-cancelled {
+            background-color: #F44747;
+            border-color: #f79a9a #8b1a1a #8b1a1a #f79a9a;
+            text-shadow: 2px 2px 0 #8b1a1a;
+            font-size: 9px;
+            padding: 3px 6px;
+            margin-left: 4px;
+        }
+        .version-badge:active {
+            border-color: #2a5490 #8ab8ff #8ab8ff #2a5490;
             transform: translate(1px, 1px);
             box-shadow: none;
         }
+        .version-badge-3:active {
+            border-color: #7b3f7b #d9a7d9 #d9a7d9 #7b3f7b;
+        }
+        .version-badge-cancelled:active {
+            border-color: #8b1a1a #f79a9a #f79a9a #8b1a1a;
+            transform: translate(1px, 1px);
+            box-shadow: none;
+        }
+        h2 .version-badge {
+            font-size: 9px;
+            padding: 3px 6px;
+        }
+        .script-header .version-badge {
+            font-size: 9px;
+            padding: 3px 6px;
+            margin-left: 10px;
+        }
 
-        .meta-box {
-            background-color: #fcf3f0;
-            border-left: 4px solid #c0392b;
-            padding: 12px 18px;
-            margin: 15px 0;
+        /* Orange Warning Banner - تحت الهيدر */
+        .warning-banner {
+            background-color: #ff9800;
+            color: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+            border-bottom: 3px solid #e68900;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .highlight-box {
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
-            padding: 14px 18px;
-            border-radius: 4px;
-            margin: 15px 0;
+        .warning-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .highlight-box ul {
-            margin: 6px 0 0 0;
+        .warning-content .material-icons {
+            margin-right: 10px;
+            font-size: 24px;
         }
-        .signature {
-            margin-top: 35px;
-            padding: 20px;
-            background-color: #fafafa;
-            border-top: 2px solid #ddd;
-            text-align: center;
-        }
-        .signature .org {
-            font-size: 18px;
+        .warning-content a {
+            color: #ffffff;
+            text-decoration: underline;
             font-weight: bold;
         }
-        .signature .date {
-            font-size: 18px;
-            font-weight: bold;
-            color: #a93226;
-            margin-top: 4px;
+        .warning-content a:hover {
+            color: #fff3e0;
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 25px;
-            font-family: 'Tiny5', sans-serif;
-            color: #2980b9;
-            text-decoration: none;
-            border: 2px solid #2980b9;
-            padding: 6px 18px;
-            border-radius: 4px;
+        .close-btn {
+            cursor: pointer;
+            font-size: 24px;
             transition: 0.2s;
+            user-select: none;
         }
-        .back-link:hover {
-            background-color: #2980b9;
-            color: #fff;
-        }
-        .footer-note {
-            margin-top: 30px;
-            color: #777;
-            text-align: center;
-        }
-        hr {
-            border: none;
-            border-top: 1px solid #ddd;
-            margin: 30px 0;
+        .close-btn:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
+<!-- الهيدر (شريط التنقل) -->
 <div class="navbar">
     <img src="https://i.postimg.cc/yYCszSyc/swrh-restudio.png" alt="Logo">
     <h1>Docs</h1>
 </div>
 
+<!-- WARNING BANNER (الأن تحت الهيدر مباشرة) -->
+<div class="warning-banner" id="warningBanner">
+    <div class="warning-content">
+        <span class="material-icons">warning</span>
+        Official support for Roland Script was discontinued on June 19, 2026. <a href="#">Further information regarding this decision</a> is available. This documentation is retained for archival purposes only.
+    </div>
+    <span class="material-icons close-btn" onclick="closeWarning()">close</span>
+</div>
+
 <div class="container">
 
-    <h1>
-        <span class="material-icons" style="font-size:28px; color:#c0392b;">error_outline</span>
-        End Of Life
-        <span class="badge-eol">EOL</span>
-    </h1>
+<h1>Welcome to Roland Script</h1>
+<p><strong>Roland Script (or Roland) is a DSL designed to be simple yet powerful. It is ideal for structured scripting with minimal syntax.</strong></p>
 
-    <div class="meta-box">
-        <strong>Official Statement of Permanent Discontinuation</strong> &mdash; Effective <strong>June 19, 2026</strong>
-    </div>
+<hr>
 
-    <p><strong>Restudio Software Laboratories</strong> hereby formally announces the permanent discontinuation of the Roland Script programming language, including the termination of all development, technical support, and maintenance activities. The project, together with its associated editor, is hereby declared permanently discontinued and removed from all future development plans of the laboratories, effective <strong>June 19, 2026</strong>.</p>
+<!-- Basic Structure -->
+<h2>Basic Script Structure</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="start">hi roland.script!</span> <span class="comment">// Entry point of the script (MANDATORY)</span><br>
+<span class="stop">end!</span> <span class="comment">// The word is not mandatory, but it's used to make the code clean at the end.</span><br>
+<span class="stop">pass!</span> <span class="comment">// Also, the word is not mandatory, but it is used to make the code clean in the end.</span>
+</div>
 
-    <p>This decision is final, strategic, and irreversible. In the interest of transparency, Restudio Software Laboratories is publishing the technical, architectural, and practical reasons that led to the permanent retirement of the project and the withdrawal of its associated tools.</p>
+<!-- Traditional Comments v3.0 -->
+<h2>Traditional Comments <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="comment">// This is a single-line comment</span><br>
+<span class="comment"># This is also a single-line comment</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Hello"</span><span class="delimiter">)</span> <span class="comment">// Inline comment after command</span><br>
+<br>
+<span class="comment">// Comments are ignored by the compiler.</span><br>
+<span class="comment">// They help document your code.</span>
+</div>
 
-    <!-- القسم الأول -->
-    <h2>I. Technical and Architectural Reasons</h2>
+<!-- Variables - Integers -->
+<h2>Variables - Integers</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="type">var</span> <span class="delimiter">=</span> X<span class="delimiter">;</span> <span class="comment">// Declare integer variable</span><br>
+X <span class="delimiter">=</span> <span class="number">3</span><span class="delimiter">;</span> <span class="comment">// Assign value</span><br>
+</div>
 
-    <h3>Cancellation of Core Features Planned for Version 3.0</h3>
-    <p>During the planning phase of Roland Script v3.0, it became evident that the architecture of the existing interpreter was fundamentally incapable of supporting several essential language features. As a result, these features were permanently cancelled before implementation, including:</p>
-    <ul>
-        <li class="cancelled-item">Protected constants (<code>prove var</code>)</li>
-        <li class="cancelled-item">Logical comparison and relational operators (<code>younger than</code>, <code>greater than</code>)</li>
-        <li class="cancelled-item">Advanced logical operators (<code>and</code>, <code>or</code>, <code>xor</code>, <code>not</code>)</li>
-        <li class="cancelled-item">Reusable programming functions (<code>act! =</code>, <code>repass!</code>)</li>
-        <li class="cancelled-item">Alternative conditional branches (<code>other:</code>, <code>wrong other:</code>) and multi-selection structures (<code>SLbell</code>)</li>
-        <li class="cancelled-item">Range-based iteration (<code>&lt;range&gt;</code>)</li>
-    </ul>
-    <p>The limitations of both the interpreter and Restudio Script Editor 1.0 (RSE 1.0) prevented the language from evolving beyond a highly experimental state, making it unsuitable for practical software development.</p>
+<!-- Variables - Decimals -->
+<h2>Variables - Decimals (Dnumber)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="type">Dnumber</span> <span class="delimiter">=</span> X<span class="delimiter">;</span> <span class="comment">// Declare decimal variable</span><br>
+X <span class="delimiter">=</span> <span class="number">3.4</span><span class="delimiter">;</span> <span class="comment">// Assign decimal value</span><br>
+</div>
 
-    <h3>Absence of Standard Primitive Data Types</h3>
-    <p>Roland Script relies on a non-standard and simplistic parsing model. For example, textual values (Words) and characters are assigned without quotation marks (e.g., <code>X = ammar</code>). This parsing approach creates ambiguity between identifiers and literal values, preventing the implementation of advanced language features such as robust type handling, symbol resolution, and sophisticated function systems.</p>
+<!-- Variables - Characters -->
+<h2>Variables - Characters</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="type">character</span> <span class="delimiter">=</span> X<span class="delimiter">;</span> <span class="comment">// Declare character variable (single letter)</span><br>
+X <span class="delimiter">=</span> e<span class="delimiter">;</span> <span class="comment">// Assign character (no quotes)</span><br>
+</div>
 
-    <h3>Pointerless Array Implementation</h3>
-    <p>The language's array mechanism (<code>line for class</code>) is based on manually defined static variables and lacks support for dynamic indexing or pointer-based access. Consequently, arrays function primarily as containers for displaying stored values rather than as fully manipulable data structures.</p>
+<!-- Variables - Words -->
+<h2>Variables - Words (Strings)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="type">word</span> <span class="delimiter">=</span> X<span class="delimiter">;</span> <span class="comment">// Declare word variable</span><br>
+X <span class="delimiter">=</span> ammar<span class="delimiter">;</span> <span class="comment">// Assign word (no quotes)</span><br>
+</div>
 
-    <h3>Conditional Execution Limitations</h3>
-    <p>The interpreter does not implement an Abstract Syntax Tree (AST). Instead, it processes source code sequentially on a line-by-line basis and skips lines using <code>currentLineIndex++</code> whenever a conditional expression evaluates to false. This architecture assumes that every conditional block occupies only a single line, making nested or complex conditional structures impractical.</p>
+<!-- Variables - Boolean -->
+<h2>Variables - Boolean (TFvar)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="type">TFvar</span> <span class="delimiter">=</span> X<span class="delimiter">;</span> <span class="comment">// Declare boolean variable (true/false)</span><br>
+X <span class="delimiter">=</span> <span class="constant">true</span><span class="delimiter">;</span> <span class="comment">// Assign true or false</span><br>
+</div>
 
-    <!-- القسم الثاني -->
-    <h2>II. Editor Status and Source Code Closure</h2>
+<!-- Prove Constants v3.0 -->
+<h2>Prove - Immutable Constants <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="prove">prove</span> <span class="type">var</span> <span class="delimiter">=</span> PI<span class="delimiter">;</span><br>
+PI <span class="delimiter">=</span> <span class="number">314</span><span class="delimiter">;</span> <span class="comment">// Once set, PI cannot be changed</span><br>
+<br>
+<span class="comment">// prove with other types:</span><br>
+<span class="prove">prove</span> <span class="type">word</span> <span class="delimiter">=</span> APP_NAME<span class="delimiter">;</span><br>
+APP_NAME <span class="delimiter">=</span> Roland<span class="delimiter">;</span><br>
+<br>
+<span class="prove">prove</span> <span class="type">TFvar</span> <span class="delimiter">=</span> DEBUG_MODE<span class="delimiter">;</span><br>
+DEBUG_MODE <span class="delimiter">=</span> <span class="constant">false</span><span class="delimiter">;</span><br>
+<br>
+<span class="prove">prove</span> <span class="type">character</span> <span class="delimiter">=</span> GRADE<span class="delimiter">;</span><br>
+GRADE <span class="delimiter">=</span> A<span class="delimiter">;</span><br>
+<br>
+<span class="prove">prove</span> <span class="type">Dnumber</span> <span class="delimiter">=</span> GRAVITY<span class="delimiter">;</span><br>
+GRAVITY <span class="delimiter">=</span> <span class="number">9.81</span><span class="delimiter">;</span><br>
+<br>
+<span class="comment">// Trying to reassign a proved variable causes an error:</span><br>
+<span class="comment">// PI = 500;  ← This will fail!</span>
+</div>
 
-    <h3>Retirement of Restudio Script Editor 1.0</h3>
-    <p>The official editor for Roland Script was <strong>Restudio Script Editor 1.0 (RSE)</strong>. The editor lacked essential development capabilities such as IntelliSense, structural code analysis, and integrated debugging tools. Due to these technical limitations, RSE 1.0 has been permanently retired.</p>
+<!-- Arrays Section -->
+<h2>Arrays (line for class) <span class="version-badge">v2.0</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge">v2.0</span></div>
+<div class="code-container">
+<span class="function">line for class:</span>[Ammar<span class="delimiter">,</span> Ali<span class="delimiter">,</span> Ahmed<span class="delimiter">,</span>] <span class="comment">// Define an array</span><br>
+<span class="function">line for class</span> <span class="delimiter">=</span> <span class="delimiter">(</span><span class="string">"My Array"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"My Array"</span><span class="delimiter">)</span><br>
+</div>
 
-    <div class="highlight-box">
-        <strong>⛔ Source Code Closure:</strong> The source code of both Roland Script and Restudio Script Editor 1.0 has been permanently closed and is no longer available for public distribution.
-    </div>
+<!-- Cletters Section -->
+<h2>Cletters - Character Combiner <span class="version-badge">v2.0</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge">v2.0</span></div>
+<div class="code-container">
+<span class="function">Cletters</span> message:<span class="delimiter">(</span><span class="string">"h e l l o   w o r l d !"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"message"</span><span class="delimiter">)</span> <span class="comment">// Output: "helloworld!"</span><br>
+</div>
 
-    <h3>Restudio Script Editor Institutional Version (RSEIV)</h3>
-    <p>Following the retirement of RSE 1.0, Restudio Software Laboratories developed a new internal editor named <strong>Restudio Script Editor Institutional Version (RSEIV)</strong>.</p>
-    <ul>
-        <li>RSEIV is designed exclusively for industry-standard programming languages such as TSX, JavaScript, HTML, and related technologies.</li>
-        <li>RSEIV <strong>does not</strong> support Roland Script in any capacity.</li>
-        <li>RSEIV is an internal institutional product and is not publicly available. Access is granted only upon formal written approval from Restudio Support.</li>
-    </ul>
+<!-- Mutable Variables -->
+<h2>Mutable Variables</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+X <span class="delimiter">=</span> <span class="number">34</span><span class="delimiter">;</span> <span class="comment">// It can be changed after appointment</span><br>
+</div>
 
-    <!-- القسم الثالث -->
-    <h2>III. Practical Considerations</h2>
+<!-- Greet -->
+<h2>Greet - Reserve a Name</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="function">greet</span> name:<span class="delimiter">(</span><span class="string">"ali"</span><span class="delimiter">)</span> <span class="comment">// Reserve a name in the code</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"hello name"</span><span class="delimiter">)</span><br>
+</div>
 
-    <h3>Zero User Adoption</h3>
-    <p>Internal usage monitoring and project evaluation determined that Roland Script had no active user base and was not being used in production or personal software projects. Continuing investment in a project without practical adoption was therefore deemed technically and strategically unjustifiable.</p>
+<!-- Conditions if -->
+<h2>Conditions (if)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="type">var</span> X <span class="delimiter">=</span> <span class="number">3</span><span class="delimiter">;</span><br>
+<span class="if-keyword">if var</span> X <span class="delimiter">=</span> <span class="delimiter">(</span><span class="string">"3"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Matched"</span><span class="delimiter">)</span><br>
+</div>
 
-    <h3>Absence of an Ecosystem</h3>
-    <p>Roland Script never developed a sustainable software ecosystem. No external libraries, community-driven packages, development tools, or active contributor community emerged around the language, preventing it from reaching long-term viability.</p>
+<!-- Greater / Younger v3.0 -->
+<h2>Greater than &amp; Younger than <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="type">var</span> <span class="delimiter">=</span> X<span class="delimiter">;</span><br>
+X <span class="delimiter">=</span> <span class="number">3</span><span class="delimiter">;</span><br>
+<span class="type">var</span> <span class="delimiter">=</span> Y<span class="delimiter">;</span><br>
+Y <span class="delimiter">=</span> <span class="number">34</span><span class="delimiter">;</span><br>
+<br>
+<span class="comment">// Check if X is younger (less) than Y:</span><br>
+<span class="if-keyword">if</span> X <span class="operator">younger than</span> Y<br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"X is younger than Y"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// Check if Y is greater than X:</span><br>
+<span class="if-keyword">if</span> Y <span class="operator">greater than</span> X<br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Y is greater than X"</span><span class="delimiter">)</span><br>
+</div>
 
-    <!-- القسم الرابع -->
-    <h2>Impact of the Discontinuation</h2>
+<!-- Logical Operators v3.0 -->
+<h2>Logical Operators (and, or, xor, not) <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="type">var</span> <span class="delimiter">=</span> A<span class="delimiter">;</span> A <span class="delimiter">=</span> <span class="number">5</span><span class="delimiter">;</span><br>
+<span class="type">var</span> <span class="delimiter">=</span> B<span class="delimiter">;</span> B <span class="delimiter">=</span> <span class="number">10</span><span class="delimiter">;</span><br>
+<span class="type">var</span> <span class="delimiter">=</span> C<span class="delimiter">;</span> C <span class="delimiter">=</span> <span class="number">20</span><span class="delimiter">;</span><br>
+<br>
+<span class="comment">// and: both conditions must be true</span><br>
+<span class="if-keyword">if</span> A <span class="delimiter">=</span> <span class="number">5</span> <span class="operator">and</span> B <span class="delimiter">=</span> <span class="number">10</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Both A and B match!"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// or: at least one condition must be true</span><br>
+<span class="if-keyword">if</span> A <span class="delimiter">=</span> <span class="number">5</span> <span class="operator">or</span> B <span class="delimiter">=</span> <span class="number">99</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"A matches OR B would match!"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// xor: exactly one condition must be true</span><br>
+<span class="if-keyword">if</span> A <span class="delimiter">=</span> <span class="number">5</span> <span class="operator">xor</span> B <span class="delimiter">=</span> <span class="number">99</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Exactly one is true (A=5 yes, B=99 no)"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// not: negates a condition</span><br>
+<span class="if-keyword">if</span> <span class="type">var</span> A <span class="operator">not</span> <span class="number">99</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"A is not 99"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// Combining with greater/younger:</span><br>
+<span class="if-keyword">if</span> A <span class="operator">greater than</span> <span class="number">2</span> <span class="operator">and</span> C <span class="operator">younger than</span> <span class="number">30</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Complex condition passed!"</span><span class="delimiter">)</span><br>
+</div>
 
-    <div class="highlight-box" style="border-color:#c0392b; background-color:#fdedec;">
-        <p style="margin:0; font-weight:bold;">Effective immediately:</p>
-        <ul style="margin:6px 0 0 0;">
-            <li>No further updates, bug fixes, security patches, or feature releases will be provided for Roland Script or Restudio Script Editor 1.0.</li>
-            <li>No Community Edition, Lite Edition, successor, or future continuation of Roland Script is planned.</li>
-            <li>Any continued use of the legacy interpreter or existing Roland Script code is undertaken entirely at the user's own responsibility, given the architectural limitations and technical deficiencies described in this statement.</li>
-        </ul>
-    </div>
+<!-- Other / Wrong Other v3.0 -->
+<h2>Other &amp; Wrong Other (Else &amp; Else If) <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="type">var</span> <span class="delimiter">=</span> SCORE<span class="delimiter">;</span><br>
+SCORE <span class="delimiter">=</span> <span class="number">75</span><span class="delimiter">;</span><br>
+<br>
+<span class="if-keyword">if</span> SCORE <span class="operator">greater than</span> <span class="number">80</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Excellent!"</span><span class="delimiter">)</span><br>
+<span class="else-keyword">other:</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Not excellent"</span><span class="delimiter">)</span><br>
+<span class="else-keyword">wrong other:</span> SCORE <span class="operator">greater than</span> <span class="number">50</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Good enough!"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// other: acts like 'else' - runs if no condition matched.</span><br>
+<span class="comment">// wrong other: acts like 'else if' - checks another condition.</span><br>
+</div>
 
-    <p>Restudio Software Laboratories extends its appreciation to everyone who followed this experimental project during its development. The laboratories will continue focusing future efforts on modern software technologies built upon secure, maintainable, and industry-standard engineering principles.</p>
+<!-- SLbell Switch Case v3.0 -->
+<h2>SLbell - Switch Case <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="type">var</span> <span class="delimiter">=</span> DAY<span class="delimiter">;</span><br>
+DAY <span class="delimiter">=</span> <span class="number">3</span><span class="delimiter">;</span><br>
+<br>
+<span class="switch">SLbell:</span><br>
+<span class="case-value">value.1</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Sunday"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<br>
+<span class="switch">otherSLbell:</span><br>
+<span class="case-value">value.2</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Monday"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<br>
+<span class="switch">otherSLbell:</span><br>
+<span class="case-value">value.3</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Tuesday"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<br>
+<span class="switch">otherSLbell:</span><br>
+<span class="case-value">value.4</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Wednesday"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<br>
+<span class="switch">otherSLbell:</span><br>
+<span class="case-value">value.5</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Thursday"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<br>
+<span class="comment">// Default case if no value matches:</span><br>
+<span class="switch">if all fail or one fails</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Unknown day"</span><span class="delimiter">)</span><br>
+</div>
 
-    <!-- التوقيع -->
-    <div class="signature">
-        <div class="org">Restudio Software Laboratories</div>
-        <div style="font-size:14px; color:#555; margin-top:2px;">Official Date of Permanent Discontinuation</div>
-        <div class="date">June 19, 2026</div>
-    </div>
+<!-- Range v3.0 -->
+<h2>Range - Fast Repeater <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="type">var</span> <span class="delimiter">=</span> X<span class="delimiter">;</span><br>
+X <span class="delimiter">=</span> <span class="number">100</span><span class="delimiter">;</span><br>
+<br>
+<span class="comment">// Print X repeated 3 times:</span><br>
+<span class="range">&lt;range=3&gt;</span> <span class="for-keyword">for</span> X<span class="delimiter">;</span><br>
+<br>
+<span class="comment">// Example with word variable:</span><br>
+<span class="type">word</span> <span class="delimiter">=</span> GREET<span class="delimiter">;</span><br>
+GREET <span class="delimiter">=</span> Hello<span class="delimiter">;</span><br>
+<span class="range">&lt;range=5&gt;</span> <span class="for-keyword">for</span> GREET<span class="delimiter">;</span><br>
+<span class="comment">// Prints "Hello" five times.</span><br>
+</div>
 
-    <!-- رابط العودة في أسفل الصفحة -->
-    <div style="text-align:center;">
-        <a href="#" onclick="history.back(); return false;" class="back-link">← Back to Documentation</a>
-    </div>
+<!-- ACT! Functions v3.0 -->
+<h2>ACT! - Reusable Functions <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="comment">// Define an act! (function) named "sayHello":</span><br>
+<span class="func">act!</span> <span class="delimiter">=</span> <span class="delimiter">(</span><span class="string">"sayHello"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Hello from act!"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"This is reusable code."</span><span class="delimiter">)</span><br>
+<span class="stop">repass!</span> <span class="comment">// REQUIRED to close the act! block</span><br>
+<br>
+<span class="comment">// Define another act! with calculations:</span><br>
+<span class="func">act!</span> <span class="delimiter">=</span> <span class="delimiter">(</span><span class="string">"calculate"</span><span class="delimiter">)</span><br>
+<span class="function">get lib</span>:<span class="delimiter">(</span><span class="string">"calculator"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"10 + 20 * 3"</span><span class="delimiter">)</span><br>
+<span class="stop">repass!</span><br>
+<br>
+<span class="comment">// Call (run) the acts:</span><br>
+<span class="func">act.run</span>:<span class="delimiter">(</span><span class="string">"sayHello"</span><span class="delimiter">)</span><br>
+<span class="func">act.run</span>:<span class="delimiter">(</span><span class="string">"calculate"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// IMPORTANT: Every act! MUST end with repass!</span><br>
+<span class="comment">// Otherwise you get: "You must enter the word repass! to close the act!"</span><br>
+</div>
 
-    <div class="footer-note">
-        &copy; Restudio software laboratories &mdash; Archival Document
-    </div>
+<!-- User Input if typed & msg.out -->
+<h2>User Input (if typed &amp; msg.out)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="function">msg.out</span>:<span class="delimiter">(</span><span class="string">"Enter number:"</span><span class="delimiter">)</span><br>
+<span class="if-keyword">if typed</span> <span class="delimiter">=</span> <span class="delimiter">(</span><span class="string">"34"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"You typed 34"</span><span class="delimiter">)</span><br>
+</div>
+
+<!-- Input & Output -->
+<h2>Input &amp; Output (msg.log &amp; msg.out)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Hello World!"</span><span class="delimiter">)</span> <span class="comment">// Print output to console</span><br>
+<span class="function">msg.out</span>:<span class="delimiter">(</span><span class="string">"Enter value"</span><span class="delimiter">)</span> <span class="comment">// Receive user input</span><br>
+</div>
+
+<!-- Libraries get lib -->
+<h2>Libraries (get lib) <span class="version-badge">v2.0</span></h2>
+<div class="script-header">ROLAND SCRIPT <span class="version-badge">v2.0</span></div>
+<div class="code-container">
+<span class="function">get lib</span>:<span class="delimiter">(</span><span class="string">"calculator"</span><span class="delimiter">)</span> <span class="comment">// Load calculator library (math.js powered)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"10 + 5 * 3"</span><span class="delimiter">)</span> <span class="comment">// Output: 25</span><br>
+</div>
+
+<!-- Repeat / Reload -->
+<h2>Repeat / Reload (reload!)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"hello world!"</span><span class="delimiter">)</span><br>
+<span class="function">reload!</span> <span class="delimiter">=</span> <span class="delimiter">(</span><span class="number">19</span><span class="delimiter">)</span> <span class="comment">// Repeat the previous command 19 times</span><br>
+</div>
+
+<!-- Comments bookname -->
+<h2>Comments (bookname)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="function">bookname</span>:<span class="delimiter">(</span><span class="string">"this code for calculator"</span><span class="delimiter">)</span> <span class="comment">// Add a comment</span><br>
+</div>
+
+<!-- Termination -->
+<h2>Termination (PASS! &amp; END!)</h2>
+<div class="script-header">ROLAND SCRIPT</div>
+<div class="code-container">
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"hello world!"</span><span class="delimiter">)</span><br>
+<span class="stop">pass!</span> <span class="comment">// Final Termination</span><br>
+</div>
+
+<!-- Complete Example v3.0 -->
+<h2>Complete Example <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></h2>
+<div class="script-header">ROLAND SCRIPT - Full Demo <span class="version-badge version-badge-3">v3.0</span> <span class="version-badge version-badge-cancelled">cancelled</span></div>
+<div class="code-container">
+<span class="start">hi roland.script!</span><br>
+<span class="comment">// This is a full Roland Script 3.0 demo</span><br>
+<span class="function">bookname</span>:<span class="delimiter">(</span><span class="string">"Roland 3.0 Complete Example"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// 1. Prove (constant) definition</span><br>
+<span class="prove">prove</span> <span class="type">var</span> <span class="delimiter">=</span> MAX_SCORE<span class="delimiter">;</span><br>
+MAX_SCORE <span class="delimiter">=</span> <span class="number">100</span><span class="delimiter">;</span><br>
+<br>
+<span class="comment">// 2. Function definition (act!)</span><br>
+<span class="func">act!</span> <span class="delimiter">=</span> <span class="delimiter">(</span><span class="string">"showHeader"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"=== ROLAND 3.0 ==="</span><span class="delimiter">)</span><br>
+<span class="stop">repass!</span><br>
+<br>
+<span class="comment">// 3. Call the function</span><br>
+<span class="func">act.run</span>:<span class="delimiter">(</span><span class="string">"showHeader"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// 4. Variables and Range</span><br>
+<span class="type">word</span> <span class="delimiter">=</span> PLAYER<span class="delimiter">;</span><br>
+PLAYER <span class="delimiter">=</span> Ahmed<span class="delimiter">;</span><br>
+<span class="range">&lt;range=2&gt;</span> <span class="for-keyword">for</span> PLAYER<span class="delimiter">;</span><br>
+<br>
+<span class="comment">// 5. Conditions with logical operators</span><br>
+<span class="type">var</span> <span class="delimiter">=</span> A<span class="delimiter">;</span> A <span class="delimiter">=</span> <span class="number">5</span><span class="delimiter">;</span><br>
+<span class="type">var</span> <span class="delimiter">=</span> B<span class="delimiter">;</span> B <span class="delimiter">=</span> <span class="number">10</span><span class="delimiter">;</span><br>
+<br>
+<span class="if-keyword">if</span> A <span class="operator">younger than</span> B <span class="operator">and</span> B <span class="operator">greater than</span> <span class="number">5</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Condition chain passed!"</span><span class="delimiter">)</span><br>
+<span class="else-keyword">other:</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Condition failed"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// 6. Switch case (SLbell)</span><br>
+<span class="type">var</span> <span class="delimiter">=</span> MODE<span class="delimiter">;</span><br>
+MODE <span class="delimiter">=</span> <span class="number">2</span><span class="delimiter">;</span><br>
+<br>
+<span class="switch">SLbell:</span><br>
+<span class="case-value">value.1</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Mode: Easy"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<span class="switch">otherSLbell:</span><br>
+<span class="case-value">value.2</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Mode: Medium"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<span class="switch">otherSLbell:</span><br>
+<span class="case-value">value.3</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Mode: Hard"</span><span class="delimiter">)</span><br>
+<span class="switch">endSLbell!</span><br>
+<span class="switch">if all fail or one fails</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"Mode: Unknown"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// 7. Arrays and Cletters</span><br>
+<span class="function">line for class:</span>[Ammar<span class="delimiter">,</span> Ali<span class="delimiter">,</span> Ahmed]<br>
+<span class="function">line for class</span> <span class="delimiter">=</span> <span class="delimiter">(</span><span class="string">"Names"</span><span class="delimiter">)</span><br>
+<span class="function">Cletters</span> combined:<span class="delimiter">(</span><span class="string">"R o l a n d"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"combined"</span><span class="delimiter">)</span><br>
+<br>
+<span class="comment">// 8. Calculator library</span><br>
+<span class="function">get lib</span>:<span class="delimiter">(</span><span class="string">"calculator"</span><span class="delimiter">)</span><br>
+<span class="function">msg.log</span>:<span class="delimiter">(</span><span class="string">"5 + 10 * 2"</span><span class="delimiter">)</span><br>
+<br>
+<span class="stop">pass!</span>
+</div>
+
+<div style="margin-top:50px; color:#777;">
+    &copy; Restudio software laboratories
+</div>
 
 </div>
+
+<script>
+function closeWarning() {
+    document.getElementById("warningBanner").style.display = "none";
+}
+</script>
 
 </body>
 </html>
